@@ -1,0 +1,38 @@
+ext {
+    // Build SDK version
+    buildToolsVersion = '24.0.2'
+    compileSdkVersion = 24
+    targetSdkVersion = 24
+
+
+    // Dependencies version
+    supportLibraryVersion = '24.2.0'
+
+    // Bind view
+    butterKnifeVersion = '8.4.0'
+
+    kotlinVersion = '1.0.3'
+
+    // Testing-only
+    junitLibVersion = '4.12'
+    espressoLibVersion = '2.2.2'
+
+
+    // Support library Dependencies
+    appCompat = "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
+    recyclerView = "com.android.support:recyclerview-v7:$rootProject.ext.supportLibraryVersion"
+    design = "com.android.support:design:$rootProject.ext.supportLibraryVersion"
+
+    // ButterKnife
+    butterKnife = "com.jakewharton:butterknife:$rootProject.ext.butterKnifeVersion"
+    butterKnifeCompiler = "com.jakewharton:butterknife-compiler:$rootProject.ext.butterKnifeVersion"
+
+    // Kotlin
+    kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib:$rootProject.ext.kotlinVersion"
+
+
+    // Testing-only dependencies
+    junit = "junit:junit:$rootProject.ext.junitLibVersion"
+
+    espressoCore = "com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoLibVersion"
+}

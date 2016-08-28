@@ -1,0 +1,41 @@
+apply plugin: 'com.android.library'
+apply plugin: 'android-apt'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "0.0.1 (build 1)"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile(rootProject.ext.espressoCore, {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile rootProject.ext.appCompat
+    compile rootProject.ext.recyclerView
+    testCompile rootProject.ext.junit
+
+    // ButterKnife
+    compile rootProject.ext.butterKnife
+    apt rootProject.ext.butterKnifeCompiler
+
+    // Kotlin
+    provided rootProject.ext.kotlinStdlib
+}
