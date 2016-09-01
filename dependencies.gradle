@@ -3,6 +3,22 @@ ext {
     buildToolsVersion = '24.0.2'
     compileSdkVersion = 24
     targetSdkVersion = 24
+    minSdkVersion = 16
+
+    versionCode = 1
+    libraryVersionName = '1.0.0'
+
+    // Bintray setting info
+    repositoryName = 'thdev.tech'
+    packageName = 'tech.thdev.support'
+
+    description = 'Android base at thdev.tech'
+
+    websiteUrl = 'http://thdev.tech/AndroidBase/'
+    gitHubRepoUrl = 'https://github.com/taehwandev/AndroidBase.git'
+
+    githubRepo = 'taehwandev/AndroidBase'
+    githubReleaseNotesFile = 'CHANGELOG.md'
 
 
     // Dependencies version

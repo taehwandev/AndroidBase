@@ -1,6 +1,46 @@
 apply plugin: 'com.android.library'
 apply plugin: 'android-apt'
 apply plugin: 'kotlin-android'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+
+group = rootProject.ext.packageName
+version = rootProject.ext.libraryVersionName
+
+// Bintray setting
+bintray {
+    user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
+    key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+
+    configurations = ['archives'] // When uploading configuration files
+
+    publish = true // [Default: false] Whether version should be auto published after an upload
+
+    pkg {
+        repo = rootProject.ext.repositoryName
+        name = project.name
+        userOrg = user // An optional organization name when the repo belongs to one of the user's orgs
+        desc = rootProject.ext.description
+        licenses = ['Apache-2.0']
+
+        vcsUrl = rootProject.ext.gitHubRepoUrl
+        websiteUrl = rootProject.ext.websiteUrl
+
+        labels = ['aar', 'android', 'android base'] // Optional
+        publicDownloadNumbers = true
+
+        githubRepo = rootProject.ext.githubRepo
+        githubReleaseNotesFile = rootProject.ext.githubReleaseNotesFile
+
+        version {
+            name = rootProject.ext.libraryVersionName
+            desc = rootProject.ext.description
+            vcsTag = rootProject.ext.libraryVersionName
+        }
+    }
+}
+// Bintray setting end
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
