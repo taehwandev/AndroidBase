@@ -1,18 +1,23 @@
 package tech.thdev.base.util
 
 import android.app.Activity
-import android.app.Fragment
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.support.annotation.IdRes
+import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 
 /**
  * Created by tae-hwan on 8/17/16.
  */
-fun Activity.setContentFragment(@IdRes frameId: Int, fragment: Fragment) {
-    fragmentManager?.beginTransaction()?.replace(frameId, fragment)?.commit()
+fun AppCompatActivity.replaceContentFragment(@IdRes frameId: Int, fragment: Fragment) {
+    supportFragmentManager.beginTransaction().add(frameId, fragment)?.commit()
+}
+
+fun Activity.replaceContentFragment(@IdRes frameId: Int, fragment: android.app.Fragment) {
+    fragmentManager.beginTransaction().replace(frameId, fragment).commit()
 }
 
 fun <E> Context?.startServiceClass(cls: Class<E>?) {

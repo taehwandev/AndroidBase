@@ -1,4 +1,4 @@
-package tech.thdev.android_base;
+package tech.thdev.sample;
 
 import org.junit.Test;
 

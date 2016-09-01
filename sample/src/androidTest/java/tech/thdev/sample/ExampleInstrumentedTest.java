@@ -1,4 +1,4 @@
-package tech.thdev.android_base;
+package tech.thdev.sample;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

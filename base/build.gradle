@@ -15,7 +15,7 @@ bintray {
 
     configurations = ['archives'] // When uploading configuration files
 
-    publish = true // [Default: false] Whether version should be auto published after an upload
+    publish = false // [Default: false] Whether version should be auto published after an upload
 
     pkg {
         repo = rootProject.ext.repositoryName
@@ -47,10 +47,10 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "0.0.1 (build 1)"
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.libraryVersionName
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 

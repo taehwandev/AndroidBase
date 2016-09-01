@@ -6,6 +6,9 @@ buildscript {
     repositories {
         jcenter()
         mavenCentral()
+        maven {
+            url = 'https://dl.bintray.com/taehwandev/thdev.tech/'
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.0-beta3'
@@ -29,6 +32,9 @@ allprojects {
     repositories {
         jcenter()
         mavenCentral()
+        maven {
+            url = 'https://dl.bintray.com/taehwandev/thdev.tech/'
+        }
     }
 }
 
