@@ -8,6 +8,46 @@ apply plugin: 'com.jfrog.bintray'
 group = rootProject.ext.packageName
 version = rootProject.ext.libraryVersionName
 
+// Local aar info
+install {
+    repositories.mavenInstaller {
+        pom.project {
+            name project.name
+            description rootProject.ext.description
+            url rootProject.ext.websiteUrl
+            inceptionYear '2016' // release date
+
+            // gradle dependency
+            packaging 'aar'
+            groupId rootProject.ext.packageName
+            artifactId project.name
+            version rootProject.ext.libraryVersionName
+
+            licenses {
+                license {
+                    name 'The Apache Software License, Version 2.0'
+                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    distribution 'repo'
+                }
+            }
+
+            scm { // Optional setting
+                connection rootProject.ext.gitHubRepoUrl
+                developerConnection rootProject.ext.gitHubRepoUrl
+                url rootProject.ext.websiteUrl
+            }
+
+            developers { // Optional setting
+                developer {
+                    id 'taehwandev'
+                    name 'taehwan'
+                    email 'taehwan@thdev.tech'
+                }
+            }
+        }
+    }
+}
+
 // Bintray setting
 bintray {
     user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
@@ -15,7 +55,7 @@ bintray {
 
     configurations = ['archives'] // When uploading configuration files
 
-    publish = false // [Default: false] Whether version should be auto published after an upload
+    publish = true // [Default: false] Whether version should be auto published after an upload
 
     pkg {
         repo = rootProject.ext.repositoryName
@@ -78,4 +118,18 @@ dependencies {
 
     // Kotlin
     provided rootProject.ext.kotlinStdlib
+}
+
+// JCenter publish
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+artifacts {
+    archives sourcesJar
+}
+
+task findConventions << {
+    println project.getConvention()
 }
