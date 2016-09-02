@@ -1,6 +1,6 @@
 ## Change Log
 
-### Version 1.0.1
+### Version 1.0.1 (2016-09-02)
 
 - Change ActivityUtil
   - 'setContentFragment' -> 'replaceContentFragment' - android.app.Fragment
