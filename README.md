@@ -1,7 +1,82 @@
 # AndroidBase
 [![License](https://img.shields.io/hexpm/l/plug.svg)]()
+[ ![Download](https://api.bintray.com/packages/taehwandev/thdev.tech/base/images/download.svg) ](https://bintray.com/taehwandev/thdev.tech/base/_latestVersion)
 
 Created kotlin. It includes ButterKnife and Adapter.
+
+## Use
+
+```
+compile 'tech.thdev.support:base:1.0.1'
+```
+
+dependencies
+
+```
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        // Kotlin 1.0.3
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.0.3'
+
+        // ButterKnife
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+    }
+}
+
+apply plugin: 'android-apt'
+apply plugin: 'kotlin-android'
+
+dependencies {
+    compile 'com.android.support:appcompat-v7:24.2.0'
+    compile 'com.android.support:recyclerview-v7:24.2.0'
+
+    // ButterKnife
+    compile 'com.jakewharton:butterknife:8.4.0'
+    apt 'com.jakewharton:butterknife-compiler:8.4.0'
+
+    // Kotlin
+    provided 'org.jetbrains.kotlin:kotlin-stdlib:1.0.3'
+
+    compile 'tech.thdev.support:base:1.0.1'
+}
+```
+
+## API Class
+
+- BaseActivity
+
+```
+public class MainActivity extends BaseActivity {
+  @Override
+  protected void onCreate(@Nullable Bundle savedInstanceState) {
+      super.onCreate(savedInstanceState);
+      setContentView(R.layout.activity_main);
+  }
+}
+```
+
+- BaseFragment
+
+```
+public class MainFragment extends BaseFragment<MainContract.Presenter> implements MainContract.View {
+
+  @BindView(R.id.textView)
+  TextView textView;
+
+  @Override
+  public int getLayout() {
+      return R.layout.fragment_main;
+  }
+}
+```
+
+- BaseRecyclerAdapter
+- BaseRecyclerViewHolder
+- BasePresenter
+- BaseView
 
 
 ## Android Developer Version info
@@ -9,7 +84,7 @@ Created kotlin. It includes ButterKnife and Adapter.
 - compile sdk version = 24
 - Target sdk version = 24
 - Min sdk version = 16
-- Android studio 2.2 Beta 3
+- Android studio 2.2 RC
 
 
 ## Use Library version
