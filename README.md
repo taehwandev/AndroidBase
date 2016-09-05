@@ -7,7 +7,7 @@ Created kotlin. It includes ButterKnife and Adapter.
 ## Use
 
 ```
-compile 'tech.thdev.support:base:1.0.1'
+compile 'tech.thdev.support:base:1.0.2'
 ```
 
 dependencies

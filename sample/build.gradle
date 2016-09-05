@@ -45,6 +45,6 @@ dependencies {
     // Kotlin
     compile rootProject.ext.kotlinStdlib
 
-    compile project(":base")
-//    compile 'tech.thdev.support:base:1.0.1'
+//    compile project(":base")
+    compile 'tech.thdev.support:base:1.0.2'
 }
