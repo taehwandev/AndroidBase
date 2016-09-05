@@ -9,9 +9,7 @@ import tech.thdev.base.presenter.AbstractPresenter;
 public class MainPresenter extends AbstractPresenter<MainContract.View> implements MainContract.Presenter {
 
     @Override
-    public void attachView(MainContract.View view) {
-        super.attachView(view);
-
-        view.onPresenter(this);
+    public void updateMessage() {
+        getView().showMessage("MainPresenter example");
     }
 }

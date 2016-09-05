@@ -9,11 +9,13 @@ import tech.thdev.base.presenter.BaseView;
 
 public interface MainContract {
 
-    interface View extends BaseView<Presenter> {
+    interface View extends BaseView {
 
+        void showMessage(String message);
     }
 
     interface Presenter extends BasePresenter<View> {
 
+        void updateMessage();
     }
 }

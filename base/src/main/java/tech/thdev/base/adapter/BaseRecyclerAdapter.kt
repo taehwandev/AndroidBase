@@ -18,12 +18,11 @@ abstract class BaseRecyclerAdapter<ITEM : BaseItem>(val context: Context) : Recy
 
     // ?.let { } - safe call == if (null != obj) { }
     override fun getItemViewType(position: Int): Int {
-        getItem(position)?.let { return it.viewType }
-        return super.getItemViewType(position)
+        getItem(position)?.let { return it.viewType } ?: return super.getItemViewType(position)
     }
 
     // Position >= or Position < 0 is null return
-    fun getItem(position: Int): ITEM? = itemList.getOrNull(position)
+    fun getItem(position: Int) = itemList.getOrNull(position)
 
     fun removeItem(position: Int) {
         itemList.removeAt(position)

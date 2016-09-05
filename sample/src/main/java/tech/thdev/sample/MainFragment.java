@@ -7,17 +7,27 @@ import android.widget.TextView;
 import org.jetbrains.annotations.Nullable;
 
 import butterknife.BindView;
+import tech.thdev.base.view.BasePresenterFragment;
 import tech.thdev.sample.presenter.MainContract;
-import tech.thdev.base.view.BaseFragment;
+import tech.thdev.sample.presenter.MainPresenter;
 
 /**
  * Created by Tae-hwan on 9/1/16.
  */
 
-public class MainFragment extends BaseFragment<MainContract.Presenter> implements MainContract.View {
+public class MainFragment
+        extends BasePresenterFragment<MainContract.View, MainContract.Presenter>
+        implements MainContract.View {
 
     @BindView(R.id.textView)
     TextView textView;
+
+    @Nullable
+    @Override
+    public MainContract.Presenter onCreatePresenter() {
+        return new MainPresenter();
+    }
+
 
     @Override
     public int getLayout() {
@@ -27,5 +37,12 @@ public class MainFragment extends BaseFragment<MainContract.Presenter> implement
     @Override
     public void onViewCreated(@Nullable View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        getPresenter().updateMessage();
+    }
+
+    @Override
+    public void showMessage(String message) {
+        textView.setText(message);
     }
 }

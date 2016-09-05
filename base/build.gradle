@@ -92,6 +92,9 @@ android {
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.libraryVersionName
 
+        renderscriptTargetApi 18
+        renderscriptSupportModeEnabled true
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }

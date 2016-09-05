@@ -12,11 +12,11 @@ import tech.thdev.base.model.BaseItem
  * Created by Tae-hwan on 7/21/16.
  */
 abstract class BaseRecyclerViewHolder<ITEM : BaseItem>
-(protected val adapter: BaseRecyclerAdapter<ITEM>, itemView: View)
-: RecyclerView.ViewHolder(itemView) {
+    (protected val adapter: BaseRecyclerAdapter<ITEM>, itemView: View)
+        : RecyclerView.ViewHolder(itemView) {
 
     constructor(@LayoutRes layoutRes: Int, parent: ViewGroup?, adapter: BaseRecyclerAdapter<ITEM>)
-    : this(adapter, LayoutInflater.from(adapter.context).inflate(layoutRes, parent, false))
+        : this(adapter, LayoutInflater.from(adapter.context).inflate(layoutRes, parent, false))
 
     abstract fun onViewHolder(item: ITEM?, position: Int)
 

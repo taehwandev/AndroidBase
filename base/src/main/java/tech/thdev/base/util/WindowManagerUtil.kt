@@ -1,27 +1,61 @@
 package tech.thdev.base.util
 
 import android.graphics.PixelFormat
-import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
 
 /**
  * Created by tae-hwan on 8/22/16.
  */
-fun WindowManager.addWindowView(view: View?, xpos: Int, ypos: Int, alpah: Float = 1f): WindowManager.LayoutParams? {
+
+fun WindowManager.addWindowView(view: View?,
+                                xPos: Int, yPos: Int,
+                                type: Int,
+                                gravity: Int,
+                                alpha: Float = 1f)
+        = this.addWindowView(view,
+        xPos, yPos,
+        type, WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN or WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+        gravity, alpha)
+
+fun WindowManager.addWindowView(view: View?,
+                                xPos: Int, yPos: Int,
+                                type: Int, flags: Int,
+                                gravity: Int,
+                                alpha: Float = 1f)
+        = this.addWindowView(view,
+        WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT,
+        xPos, yPos,
+        type, flags, gravity, alpha)
+
+fun WindowManager.addWindowView(view: View?,
+                                width: Int, height: Int,
+                                xPos: Int, yPos: Int,
+                                type: Int, flags: Int,
+                                gravity: Int,
+                                alpha: Float = 1f)
+        = this.addWindowView(view,
+        width, height,
+        xPos, yPos,
+        type, flags, PixelFormat.TRANSLUCENT, gravity, alpha)
+
+fun WindowManager.addWindowView(view: View?,
+                                width: Int, height: Int,
+                                xPos: Int, yPos: Int,
+                                type: Int, flags: Int,
+                                format: Int, gravity: Int,
+                                alpha: Float = 1f): WindowManager.LayoutParams? {
     this.let {
         val layoutParams = WindowManager.LayoutParams()
-        layoutParams.width = WindowManager.LayoutParams.WRAP_CONTENT
-        layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT
-        layoutParams.x = xpos
-        layoutParams.y = ypos
-        layoutParams.alpha = alpah
-        layoutParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ERROR
-        layoutParams.flags =
-                WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN or
-                        WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
-        layoutParams.format = PixelFormat.TRANSLUCENT
-        layoutParams.gravity = Gravity.TOP or Gravity.LEFT
+        layoutParams.width = width
+        layoutParams.height = height
+        layoutParams.x = xPos
+        layoutParams.y = yPos
+        layoutParams.alpha = alpha
+        layoutParams.type = type
+        layoutParams.flags = flags
+        layoutParams.format = format
+        layoutParams.gravity = gravity
 
         this.addView(view, layoutParams)
 
