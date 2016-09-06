@@ -1,5 +1,10 @@
 ## Change Log
 
+### Version 1.0.3 (2016-09-06)
+
+- Update RenderScriptUtil.
+  - Additional functions for half the image size to default
+
 ### Version 1.0.2 (2016-09-05)
 
 - Classification by usage.

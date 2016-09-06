@@ -14,7 +14,16 @@ import android.support.v8.renderscript.ScriptIntrinsicBlur
  */
 
 /**
- * Create blur half size image create
+ * Create blur image - half size
+ */
+fun Bitmap?.createBlurImage(context: Context, radius: Float = 25.0f): Bitmap? {
+    return this?.let {
+        createBlurImage(context, it.width / 2, it.height / 2, radius)
+    }
+}
+
+/**
+ * Create blur image
  */
 fun Bitmap?.createBlurImage(context: Context, dstWidth: Int, dstHeight: Int, radius: Float = 25.0f): Bitmap? {
     return this?.let {
