@@ -26,8 +26,9 @@ buildscript {
     }
 }
 
-apply plugin: 'android-apt'
+apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'com.neenbedankt.android-apt'
 
 dependencies {
     compile 'com.android.support:appcompat-v7:24.2.0'
