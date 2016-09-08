@@ -38,9 +38,9 @@ dependencies {
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
 
     // Kotlin
-    provided 'org.jetbrains.kotlin:kotlin-stdlib:1.0.3'
+    compile 'org.jetbrains.kotlin:kotlin-stdlib:1.0.3'
 
-    compile 'tech.thdev.support:base:1.0.1'
+    compile 'tech.thdev.support:base:1.0.3'
 }
 ```
 
