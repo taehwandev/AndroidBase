@@ -5,7 +5,7 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
 
-group = rootProject.ext.packageName
+group = GROUP
 version = rootProject.ext.libraryVersionName
 
 // Local aar info
@@ -19,7 +19,7 @@ install {
 
             // gradle dependency
             packaging 'aar'
-            groupId rootProject.ext.packageName
+            groupId GROUP
             artifactId project.name
             version rootProject.ext.libraryVersionName
 

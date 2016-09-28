@@ -1,5 +1,13 @@
 ## Change Log
 
+### Version 1.0.4 (2016-09-29)
+
+- Update Adapter.
+  - Add the BaseModel Adapter
+- Update Library Version
+  - Gradle 1.0.4
+  - SupportLibrary 24.2.1
+
 ### Version 1.0.3 (2016-09-06)
 
 - Update RenderScriptUtil.

@@ -6,15 +6,12 @@ buildscript {
     repositories {
         jcenter()
         mavenCentral()
-//        maven {
-//            url = 'https://dl.bintray.com/taehwandev/thdev.tech/'
-//        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.0'
 
         // Kotlin 1.0.3
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.0.3'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.0.4'
 
         // ButterKnife
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
@@ -32,9 +29,6 @@ allprojects {
     repositories {
         jcenter()
         mavenCentral()
-//        maven {
-//            url = 'https://dl.bintray.com/taehwandev/thdev.tech/'
-//        }
     }
 }
 

@@ -5,12 +5,12 @@ ext {
     targetSdkVersion = 24
     minSdkVersion = 16
 
-    versionCode = 4
-    libraryVersionName = '1.0.3'
+    versionCode = 5
+    libraryVersionName = '1.0.4'
 
     // Bintray setting info
     repositoryName = 'thdev.tech'
-    packageName = 'tech.thdev.support'
+    GROUP = 'tech.thdev.support'
 
     description = 'Android base at thdev.tech'
 
@@ -22,12 +22,12 @@ ext {
 
 
     // Dependencies version
-    supportLibraryVersion = '24.2.0'
+    supportLibraryVersion = '24.2.1'
 
     // Bind view
     butterKnifeVersion = '8.4.0'
 
-    kotlinVersion = '1.0.3'
+    kotlinVersion = '1.0.4'
 
     // Testing-only
     junitLibVersion = '4.12'
