@@ -2,15 +2,17 @@
 [![License](https://img.shields.io/hexpm/l/plug.svg)]()
 [ ![Download](https://api.bintray.com/packages/taehwandev/thdev.tech/base/images/download.svg) ](https://bintray.com/taehwandev/thdev.tech/base/_latestVersion)
 
-Created kotlin. It includes ButterKnife and Adapter.
+### Created kotlin. It includes ButterKnife and Adapter.
 
-## Use
+# Use
+
+### Support base library gradle.
 
 ```
-compile 'tech.thdev.support:base:1.0.3'
+compile 'tech.thdev.support:base:1.0.4'
 ```
 
-dependencies
+### Use dependencies
 
 ```
 buildscript {
@@ -18,8 +20,8 @@ buildscript {
         jcenter()
     }
     dependencies {
-        // Kotlin 1.0.3
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.0.3'
+        // Kotlin
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.0.4'
 
         // ButterKnife
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
@@ -31,17 +33,17 @@ apply plugin: 'kotlin-android'
 apply plugin: 'com.neenbedankt.android-apt'
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:24.2.0'
-    compile 'com.android.support:recyclerview-v7:24.2.0'
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:recyclerview-v7:24.2.1'
 
     // ButterKnife
     compile 'com.jakewharton:butterknife:8.4.0'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
 
     // Kotlin
-    compile 'org.jetbrains.kotlin:kotlin-stdlib:1.0.3'
+    compile 'org.jetbrains.kotlin:kotlin-stdlib:1.0.4'
 
-    compile 'tech.thdev.support:base:1.0.3'
+    compile 'tech.thdev.support:base:1.0.4'
 }
 ```
 
@@ -59,10 +61,12 @@ public class MainActivity extends BaseActivity {
 }
 ```
 
+
 - BaseFragment
 
+
 ```
-public class MainFragment extends BaseFragment<MainContract.Presenter> implements MainContract.View {
+public class MainFragment extends BaseFragment {
 
   @BindView(R.id.textView)
   TextView textView;
@@ -73,6 +77,7 @@ public class MainFragment extends BaseFragment<MainContract.Presenter> implement
   }
 }
 ```
+
 
 - BaseRecyclerAdapter
 - BaseRecyclerViewHolder
@@ -85,12 +90,12 @@ public class MainFragment extends BaseFragment<MainContract.Presenter> implement
 - compile sdk version = 24
 - Target sdk version = 24
 - Min sdk version = 16
-- Android studio 2.2 RC
+- Android studio 2.2
 
 
 ## Use Library version
-- Kotlin version = 1.0.3
-- support libraryVersion = 24.2.0
+- Kotlin version = 1.0.4
+- support libraryVersion = 24.2.1
 - ButterKnife 8.4.0
 
 
