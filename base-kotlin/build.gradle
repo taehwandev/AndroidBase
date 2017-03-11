@@ -99,7 +99,6 @@ android {
         renderscriptSupportModeEnabled true
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
     buildTypes {
         release {
