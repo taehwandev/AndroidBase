@@ -1,19 +1,22 @@
 apply plugin: 'com.android.library'
-apply plugin: 'android-apt'
 apply plugin: 'kotlin-android'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
 
+ext.libraryVersionCode = 6
+ext.libraryVersionName = '1.0.5'
+ext.description = 'Android base at thdev.tech'
+
 group = GROUP
-version = rootProject.ext.libraryVersionName
+version = ext.libraryVersionName
 
 // Local aar info
 install {
     repositories.mavenInstaller {
         pom.project {
             name project.name
-            description rootProject.ext.description
+            description description
             url rootProject.ext.websiteUrl
             inceptionYear '2016' // release date
 
@@ -21,7 +24,7 @@ install {
             packaging 'aar'
             groupId GROUP
             artifactId project.name
-            version rootProject.ext.libraryVersionName
+            version libraryVersionName
 
             licenses {
                 license {
@@ -50,8 +53,8 @@ install {
 
 // Bintray setting
 bintray {
-    user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
-    key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+    user = project.hasProperty('bintray.bintrayUser') ? project.property('bintray.bintrayUser') : System.getenv('BINTRAY_USER')
+    key = project.hasProperty('bintray.bintrayApiKey') ? project.property('bintray.bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
 
     configurations = ['archives'] // When uploading configuration files
 
@@ -61,7 +64,7 @@ bintray {
         repo = rootProject.ext.repositoryName
         name = project.name
         userOrg = user // An optional organization name when the repo belongs to one of the user's orgs
-        desc = rootProject.ext.description
+        desc = description
         licenses = ['Apache-2.0']
 
         vcsUrl = rootProject.ext.gitHubRepoUrl
@@ -71,12 +74,12 @@ bintray {
         publicDownloadNumbers = true
 
         githubRepo = rootProject.ext.githubRepo
-        githubReleaseNotesFile = rootProject.ext.githubReleaseNotesFile
+        githubReleaseNotesFile = 'KOTLIN-CHANGELOG.md'
 
         version {
-            name = rootProject.ext.libraryVersionName
-            desc = rootProject.ext.description
-            vcsTag = rootProject.ext.libraryVersionName
+            name = libraryVersionName
+            desc = description
+            vcsTag = libraryVersionName
         }
     }
 }
@@ -89,8 +92,8 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode rootProject.ext.versionCode
-        versionName rootProject.ext.libraryVersionName
+        versionCode libraryVersionCode
+        versionName libraryVersionName
 
         renderscriptTargetApi 18
         renderscriptSupportModeEnabled true
@@ -108,19 +111,20 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile(rootProject.ext.espressoCore, {
+    androidTestCompile("com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoLibVersion", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile rootProject.ext.appCompat
-    compile rootProject.ext.recyclerView
-    testCompile rootProject.ext.junit
+    testCompile "junit:junit:$rootProject.ext.junitLibVersion"
+
+    compile "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
+    compile "com.android.support:recyclerview-v7:$rootProject.ext.supportLibraryVersion"
 
     // ButterKnife
-    compile rootProject.ext.butterKnife
-    apt rootProject.ext.butterKnifeCompiler
+    compile "com.jakewharton:butterknife:$rootProject.ext.butterKnifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterKnifeVersion"
 
     // Kotlin
-    provided rootProject.ext.kotlinStdlib
+    provided "org.jetbrains.kotlin:kotlin-stdlib:$rootProject.ext.kotlinVersion"
 }
 
 // JCenter publish
@@ -131,8 +135,4 @@ task sourcesJar(type: Jar) {
 
 artifacts {
     archives sourcesJar
-}
-
-task findConventions << {
-    println project.getConvention()
 }
