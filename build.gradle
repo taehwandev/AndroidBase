@@ -22,12 +22,12 @@ buildscript {
         githubRepo = 'taehwandev/AndroidBase'
 
         /// Java
-        javaLibraryVersionCode = 1
-        javaLibraryVersionName = '1.0.0'
+        javaLibraryVersionCode = 2
+        javaLibraryVersionName = '1.1.0'
         javaDescription = 'Android base written in java by thdev.tech'
 
         /// kotlin
-        kotlinLibraryVersionCode = 6
+        kotlinLibraryVersionCode = 7
         kotlinLibraryVersionName = '1.1.0'
         kotlinDescription = 'Android base written in kotlin by thdev.tech'
 

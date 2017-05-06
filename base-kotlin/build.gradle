@@ -140,7 +140,3 @@ task sourcesJar(type: Jar) {
 artifacts {
     archives sourcesJar
 }
-
-task findConventions << {
-    println project.getConvention()
-}
