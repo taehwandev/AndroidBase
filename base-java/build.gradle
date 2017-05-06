@@ -1,20 +1,27 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
-
-ext.libraryVersionCode = 1
-ext.libraryVersionName = '1.0.0'
-ext.description = 'Android base written in java by thdev.tech'
+apply plugin: 'maven-publish'
 
 group = GROUP
-version = ext.libraryVersionName
+version = rootProject.ext.javaLibraryVersionName
+
+publishing {
+    publications {
+        MyPublication(MavenPublication) {
+            groupId GROUP
+            artifactId project.getName()
+            version rootProject.ext.kotlinLibraryVersionName
+        }
+    }
+}
 
 // Local aar info
 install {
     repositories.mavenInstaller {
         pom.project {
             name project.name
-            description description
+            description rootProject.ext.javaDescription
             url rootProject.ext.websiteUrl
             inceptionYear '2017' // release date
 
@@ -22,7 +29,7 @@ install {
             packaging 'aar'
             groupId GROUP
             artifactId project.name
-            version libraryVersionName
+            version rootProject.ext.javaLibraryVersionName
 
             licenses {
                 license {
@@ -51,18 +58,20 @@ install {
 
 // Bintray setting
 bintray {
-    user = project.hasProperty('bintray.bintrayUser') ? project.property('bintray.bintrayUser') : System.getenv('BINTRAY_USER')
-    key = project.hasProperty('bintray.bintrayApiKey') ? project.property('bintray.bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+    println "java user " + rootProject.ext.BINTRARY_USER
+    user = rootProject.ext.BINTRARY_USER
+    key = rootProject.ext.BINTRARY_KEY
 
-    configurations = ['archives'] // When uploading configuration files
+    configurations = ['deployables'] // When uploading configuration files
+    publications = ['MyPublication'] // When uploading Maven-based publication files
 
-    publish = true // [Default: false] Whether version should be auto published after an upload
+    publish = true //[Default: false] Whether version should be auto published after an upload
 
     pkg {
         repo = rootProject.ext.repositoryName
         name = project.name
         userOrg = user // An optional organization name when the repo belongs to one of the user's orgs
-        desc = description
+        desc = rootProject.ext.javaDescription
         licenses = ['Apache-2.0']
 
         vcsUrl = rootProject.ext.gitHubRepoUrl
@@ -73,12 +82,6 @@ bintray {
 
         githubRepo = rootProject.ext.githubRepo
         githubReleaseNotesFile = 'CHANGELOG-JAVA.md'
-
-        version {
-            name = libraryVersionName
-            desc = description
-            vcsTag = libraryVersionName
-        }
     }
 }
 // Bintray setting end
@@ -90,8 +93,8 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode libraryVersionCode
-        versionName libraryVersionName
+        versionCode rootProject.ext.javaLibraryVersionCode
+        versionName rootProject.ext.javaLibraryVersionName
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -101,6 +104,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    lintOptions {
+        abortOnError false
     }
 }
 

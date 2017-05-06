@@ -21,6 +21,21 @@ buildscript {
 
         githubRepo = 'taehwandev/AndroidBase'
 
+        /// Java
+        javaLibraryVersionCode = 1
+        javaLibraryVersionName = '1.0.0'
+        javaDescription = 'Android base written in java by thdev.tech'
+
+        /// kotlin
+        kotlinLibraryVersionCode = 6
+        kotlinLibraryVersionName = '1.1.0'
+        kotlinDescription = 'Android base written in kotlin by thdev.tech'
+
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+        BINTRARY_USER = properties.getProperty('bintray.bintrayUser').isEmpty() ? System.getenv('BINTRAY_USER') : properties.getProperty('bintray.bintrayUser')
+        BINTRARY_KEY = properties.getProperty('bintray.bintrayApiKey').isEmpty() ? System.getenv('BINTRAY_API_KEY') : properties.getProperty('bintray.bintrayApiKey')
+
         // Dependencies version
         supportLibraryVersion = '25.3.1'
 
@@ -41,8 +56,9 @@ buildscript {
         // ButterKnife
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
 
-        // Bintray sample
+        // https://github.com/dcendents/android-maven-gradle-plugin
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
+        // https://github.com/bintray/gradle-bintray-plugin
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
 
         // NOTE: Do not place your application dependencies here; they belong
