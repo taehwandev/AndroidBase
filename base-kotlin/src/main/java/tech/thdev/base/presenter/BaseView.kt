@@ -5,4 +5,5 @@ package tech.thdev.base.presenter
  */
 interface BaseView {
 
+    fun isNotFinish(): Boolean
 }

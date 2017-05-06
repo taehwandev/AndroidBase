@@ -1,12 +1,10 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
-
-ext.libraryVersionCode = 6
-ext.libraryVersionName = '1.1.0'
-ext.description = 'Android base written in kotlin by thdev.tech'
+ext.libraryVersionCode = 1
+ext.libraryVersionName = '1.0.0'
+ext.description = 'Android base written in java by thdev.tech'
 
 group = GROUP
 version = ext.libraryVersionName
@@ -74,7 +72,7 @@ bintray {
         publicDownloadNumbers = true
 
         githubRepo = rootProject.ext.githubRepo
-        githubReleaseNotesFile = 'CHANGELOG-KOTLIN.md'
+        githubReleaseNotesFile = 'CHANGELOG-JAVA.md'
 
         version {
             name = libraryVersionName
@@ -95,10 +93,8 @@ android {
         versionCode libraryVersionCode
         versionName libraryVersionName
 
-        renderscriptTargetApi 18
-        renderscriptSupportModeEnabled true
-
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
     }
     buildTypes {
         release {
@@ -121,9 +117,6 @@ dependencies {
     // ButterKnife
     compile "com.jakewharton:butterknife:$rootProject.ext.butterKnifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterKnifeVersion"
-
-    // Kotlin
-    provided "org.jetbrains.kotlin:kotlin-stdlib:$rootProject.ext.kotlinVersion"
 }
 
 // JCenter publish

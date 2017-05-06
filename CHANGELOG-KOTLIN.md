@@ -1,5 +1,18 @@
 ## Change Log
 
+### Version 1.1.0 (2017-05-06)
+
+- Removing the Module
+  - Java
+  - Kotlin
+- Remove Adapter
+- Remove ButterKnife
+- Update Library Version
+  - gradle-3.3
+  - buildToolsVersion 25.0.2
+  - SupportLibrary 25.3.1
+  - Kotlin version 1.1.2-3
+
 ### Version 1.0.4 (2016-09-29)
 
 - Update Adapter.

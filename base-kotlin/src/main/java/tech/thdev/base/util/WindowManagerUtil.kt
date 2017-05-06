@@ -11,12 +11,11 @@ import android.view.WindowManager
 fun WindowManager.addWindowView(view: View?,
                                 xPos: Int, yPos: Int,
                                 type: Int,
-                                gravity: Int,
-                                alpha: Float = 1f)
+                                gravity: Int)
         = this.addWindowView(view,
         xPos, yPos,
         type, WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN or WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
-        gravity, alpha)
+        gravity, 1f)
 
 fun WindowManager.addWindowView(view: View?,
                                 xPos: Int, yPos: Int,
