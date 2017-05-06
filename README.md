@@ -1,15 +1,24 @@
-# AndroidBase
+# Android MVP Base
 [![License](https://img.shields.io/hexpm/l/plug.svg)]()
-[ ![Download](https://api.bintray.com/packages/taehwandev/thdev.tech/base/images/download.svg) ](https://bintray.com/taehwandev/thdev.tech/base/_latestVersion)
 
-### Created kotlin. It includes ButterKnife and Adapter.
+Provides Java And Kotlin libraries.
 
-# Use
+Activity and Fragment are implemented.
+Presenter is inherited from AbstractPresenter and can be implemented by inheriting
+BasePresenterActivity/BasePresenterFragment.
+
+
+# Android base with kotlin
+[ ![Download](https://api.bintray.com/packages/taehwandev/thdev.tech/base-kotlin/images/download.svg) ](https://bintray.com/taehwandev/thdev.tech/base-kotlin/_latestVersion)
+
+#### It is an MVP base written in Kotlin.
+
+# Use Kotlin library
 
 ### Support base library gradle.
 
 ```
-compile 'tech.thdev.support:base:1.0.4'
+compile 'tech.thdev.support:base-kotlin:1.1.4'
 ```
 
 ### Use dependencies
@@ -21,29 +30,50 @@ buildscript {
     }
     dependencies {
         // Kotlin
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.0.4'
-
-        // ButterKnife
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.1.2-3'
     }
 }
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'com.neenbedankt.android-apt'
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:24.2.1'
-    compile 'com.android.support:recyclerview-v7:24.2.1'
-
-    // ButterKnife
-    compile 'com.jakewharton:butterknife:8.4.0'
-    apt 'com.jakewharton:butterknife-compiler:8.4.0'
+    compile 'com.android.support:appcompat-v7:25.3.1'
 
     // Kotlin
-    compile 'org.jetbrains.kotlin:kotlin-stdlib:1.0.4'
+    compile 'org.jetbrains.kotlin:kotlin-stdlib:1.1.2-3'
 
-    compile 'tech.thdev.support:base:1.0.4'
+    compile 'tech.thdev.support:base-kotlin:1.1.4'
+}
+```
+
+
+# Android base with java
+[ ![Download](https://api.bintray.com/packages/taehwandev/thdev.tech/base-java/images/download.svg) ](https://bintray.com/taehwandev/thdev.tech/base-java/_latestVersion)
+
+#### It is an MVP base written in Java.
+
+# Use
+
+### Support base library gradle.
+
+```
+compile 'tech.thdev.support:base-java:1.1.4'
+```
+
+### Use dependencies
+
+```
+apply plugin: 'com.android.application'
+
+dependencies {
+    compile 'com.android.support:appcompat-v7:25.3.1'
+
+    // ButterKnife
+``    compile 'com.jakewharton:butterknife:8.5.1'
+    apt 'com.jakewharton:butterknife-compiler:8.5.1'
+
+    compile 'tech.thdev.support:base-java:1.1.4'
 }
 ```
 
@@ -86,17 +116,17 @@ public class MainFragment extends BaseFragment {
 
 
 ## Android Developer Version info
-- buildToolsVersion = 24.0.2
-- compile sdk version = 24
-- Target sdk version = 24
+- buildToolsVersion = 25.0.2
+- compile sdk version = 25
+- Target sdk version = 25
 - Min sdk version = 16
-- Android studio 2.2
+- Android studio 2.3
 
 
 ## Use Library version
-- Kotlin version = 1.0.4
-- support libraryVersion = 24.2.1
-- ButterKnife 8.4.0
+- Kotlin version = 1.1.2-3
+- support libraryVersion = 25.3.1
+- ButterKnife 8.5.1
 
 
 ## License
