@@ -12,30 +12,6 @@ buildscript {
         targetSdkVersion = 25
         minSdkVersion = 16
 
-        // Bintray setting info
-        repositoryName = 'thdev.tech'
-        GROUP = 'tech.thdev.support'
-
-        websiteUrl = 'http://thdev.tech/AndroidBase/'
-        gitHubRepoUrl = 'https://github.com/taehwandev/AndroidBase.git'
-
-        githubRepo = 'taehwandev/AndroidBase'
-
-        /// Java
-        javaLibraryVersionCode = 3
-        javaLibraryVersionName = '1.1.4'
-        javaDescription = 'Android base written in java by thdev.tech'
-
-        /// kotlin
-        kotlinLibraryVersionCode = 8
-        kotlinLibraryVersionName = '1.1.4'
-        kotlinDescription = 'Android base written in kotlin by thdev.tech'
-
-        Properties properties = new Properties()
-        properties.load(project.rootProject.file('local.properties').newDataInputStream())
-        BINTRARY_USER = properties.getProperty('bintray.bintrayUser').isEmpty() ? System.getenv('BINTRAY_USER') : properties.getProperty('bintray.bintrayUser')
-        BINTRARY_KEY = properties.getProperty('bintray.bintrayApiKey').isEmpty() ? System.getenv('BINTRAY_API_KEY') : properties.getProperty('bintray.bintrayApiKey')
-
         // Dependencies version
         supportLibraryVersion = '25.3.1'
 
@@ -47,6 +23,20 @@ buildscript {
         // Testing-only
         junitLibVersion = '4.12'
         espressoLibVersion = '2.2.2'
+
+
+        // Bintray setting info
+        repositoryName = 'thdev.tech'
+        groupId = 'tech.thdev.support'
+
+        websiteUrl = 'http://thdev.tech/AndroidBase/'
+        gitHubRepoUrl = 'https://github.com/taehwandev/AndroidBase.git'
+
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+        BINTRARY_USER = properties.getProperty('bintray.bintrayUser').isEmpty() ? System.getenv('BINTRAY_USER') : properties.getProperty('bintray.bintrayUser')
+        BINTRARY_KEY = properties.getProperty('bintray.bintrayApiKey').isEmpty() ? System.getenv('BINTRAY_API_KEY') : properties.getProperty('bintray.bintrayApiKey')
+
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.1'

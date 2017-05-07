@@ -1,6 +1,6 @@
 ## Change Log
 
-### Version 1.1.4 (2017-05-06)
+### Version 1.0.0 (2017-05-08)
 
 - Removing the Module
   - Java

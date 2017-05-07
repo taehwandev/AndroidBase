@@ -4,88 +4,13 @@ apply plugin: 'com.jfrog.bintray'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'maven-publish'
 
-group = GROUP
-version = rootProject.ext.kotlinLibraryVersionName
 
-publishing {
-    publications {
-        MyPublication(MavenPublication) {
-            groupId GROUP
-            artifactId project.getName()
-            version rootProject.ext.kotlinLibraryVersionName
-        }
-    }
+ext {
+    libraryVersionCode = 2
+    libraryVersion = '1.0.0'
+    libraryDescription = 'Android base written in kotlin by thdev.tech'
+    releaseNote = 'CHANGELOG-KOTLIN.md'
 }
-
-// Local aar info
-install {
-    repositories.mavenInstaller {
-        pom.project {
-            name project.name
-            description rootProject.ext.kotlinDescription
-            url rootProject.ext.websiteUrl
-            inceptionYear '2017' // release date
-
-            // gradle dependency
-            packaging 'aar'
-            groupId GROUP
-            artifactId project.name
-            version rootProject.ext.kotlinLibraryVersionName
-
-            licenses {
-                license {
-                    name 'The Apache Software License, Version 2.0'
-                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                    distribution 'repo'
-                }
-            }
-
-            scm { // Optional setting
-                connection rootProject.ext.gitHubRepoUrl
-                developerConnection rootProject.ext.gitHubRepoUrl
-                url rootProject.ext.websiteUrl
-            }
-
-            developers { // Optional setting
-                developer {
-                    id 'taehwandev'
-                    name 'taehwan'
-                    email 'taehwan@thdev.tech'
-                }
-            }
-        }
-    }
-}
-
-// Bintray setting
-bintray {
-    println "kotlin user " + rootProject.ext.BINTRARY_USER
-    user = rootProject.ext.BINTRARY_USER
-    key = rootProject.ext.BINTRARY_KEY
-
-    configurations = ['deployables'] // When uploading configuration files
-    publications = ['MyPublication'] // When uploading Maven-based publication files
-
-    publish = true //[Default: false] Whether version should be auto published after an upload
-
-    pkg {
-        repo = rootProject.ext.repositoryName
-        name = project.name
-        userOrg = user // An optional organization name when the repo belongs to one of the user's orgs
-        desc = description
-        licenses = ['Apache-2.0']
-
-        vcsUrl = rootProject.ext.gitHubRepoUrl
-        websiteUrl = rootProject.ext.websiteUrl
-
-        labels = ['aar', 'android', 'android base'] // Optional
-        publicDownloadNumbers = true
-
-        githubRepo = rootProject.ext.githubRepo
-        githubReleaseNotesFile = 'CHANGELOG-KOTLIN.md'
-    }
-}
-// Bintray setting end
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -94,8 +19,8 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode rootProject.ext.kotlinLibraryVersionCode
-        versionName rootProject.ext.kotlinLibraryVersionName
+        versionCode libraryVersionCode
+        versionName libraryVersion
 
         renderscriptTargetApi 18
         renderscriptSupportModeEnabled true
@@ -121,22 +46,10 @@ dependencies {
     testCompile "junit:junit:$rootProject.ext.junitLibVersion"
 
     compile "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
-    compile "com.android.support:design:$supportLibraryVersion"
-
-    // ButterKnife
-    compile "com.jakewharton:butterknife:$rootProject.ext.butterKnifeVersion"
-    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterKnifeVersion"
+    compile "com.android.support:design:$rootProject.ext.supportLibraryVersion"
 
     // Kotlin
     provided "org.jetbrains.kotlin:kotlin-stdlib:$rootProject.ext.kotlinVersion"
 }
 
-// JCenter publish
-task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
-}
-
-artifacts {
-    archives sourcesJar
-}
+apply from: rootProject.file('gradle/publish.gradle')

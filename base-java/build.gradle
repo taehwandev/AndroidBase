@@ -1,90 +1,14 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'maven-publish'
 
-group = GROUP
-version = rootProject.ext.javaLibraryVersionName
-
-publishing {
-    publications {
-        MyPublication(MavenPublication) {
-            groupId GROUP
-            artifactId project.getName()
-            version rootProject.ext.kotlinLibraryVersionName
-        }
-    }
+ext {
+    libraryVersionCode = 2
+    libraryVersion = '1.0.0'
+    libraryDescription = 'Android base written in java by thdev.tech'
+    releaseNote = 'CHANGELOG-JAVA.md'
 }
-
-// Local aar info
-install {
-    repositories.mavenInstaller {
-        pom.project {
-            name project.name
-            description rootProject.ext.javaDescription
-            url rootProject.ext.websiteUrl
-            inceptionYear '2017' // release date
-
-            // gradle dependency
-            packaging 'aar'
-            groupId GROUP
-            artifactId project.name
-            version rootProject.ext.javaLibraryVersionName
-
-            licenses {
-                license {
-                    name 'The Apache Software License, Version 2.0'
-                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                    distribution 'repo'
-                }
-            }
-
-            scm { // Optional setting
-                connection rootProject.ext.gitHubRepoUrl
-                developerConnection rootProject.ext.gitHubRepoUrl
-                url rootProject.ext.websiteUrl
-            }
-
-            developers { // Optional setting
-                developer {
-                    id 'taehwandev'
-                    name 'taehwan'
-                    email 'taehwan@thdev.tech'
-                }
-            }
-        }
-    }
-}
-
-// Bintray setting
-bintray {
-    println "java user " + rootProject.ext.BINTRARY_USER
-    user = rootProject.ext.BINTRARY_USER
-    key = rootProject.ext.BINTRARY_KEY
-
-    configurations = ['deployables'] // When uploading configuration files
-    publications = ['MyPublication'] // When uploading Maven-based publication files
-
-    publish = true //[Default: false] Whether version should be auto published after an upload
-
-    pkg {
-        repo = rootProject.ext.repositoryName
-        name = project.name
-        userOrg = user // An optional organization name when the repo belongs to one of the user's orgs
-        desc = rootProject.ext.javaDescription
-        licenses = ['Apache-2.0']
-
-        vcsUrl = rootProject.ext.gitHubRepoUrl
-        websiteUrl = rootProject.ext.websiteUrl
-
-        labels = ['aar', 'android', 'android base'] // Optional
-        publicDownloadNumbers = true
-
-        githubRepo = rootProject.ext.githubRepo
-        githubReleaseNotesFile = 'CHANGELOG-JAVA.md'
-    }
-}
-// Bintray setting end
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -93,11 +17,13 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode rootProject.ext.javaLibraryVersionCode
-        versionName rootProject.ext.javaLibraryVersionName
+        versionCode libraryVersionCode
+        versionName libraryVersion
+
+        renderscriptTargetApi 18
+        renderscriptSupportModeEnabled true
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
     buildTypes {
         release {
@@ -118,19 +44,11 @@ dependencies {
     testCompile "junit:junit:$rootProject.ext.junitLibVersion"
 
     compile "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
-    compile "com.android.support:design:$supportLibraryVersion"
+    compile "com.android.support:design:$rootProject.ext.supportLibraryVersion"
 
     // ButterKnife
     compile "com.jakewharton:butterknife:$rootProject.ext.butterKnifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterKnifeVersion"
 }
 
-// JCenter publish
-task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
-}
-
-artifacts {
-    archives sourcesJar
-}
+apply from: rootProject.file('gradle/publish.gradle')
