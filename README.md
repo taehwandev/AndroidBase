@@ -18,7 +18,7 @@ BasePresenterActivity/BasePresenterFragment.
 ### Support base library gradle.
 
 ```
-compile 'tech.thdev.support:base-kotlin:1.1.4'
+compile 'tech.thdev.support:base-kotlin:1.0.0'
 ```
 
 ### Use dependencies
@@ -43,7 +43,7 @@ dependencies {
     // Kotlin
     compile 'org.jetbrains.kotlin:kotlin-stdlib:1.1.2-3'
 
-    compile 'tech.thdev.support:base-kotlin:1.1.4'
+    compile 'tech.thdev.support:base-kotlin:1.0.0'
 }
 ```
 
@@ -58,7 +58,7 @@ dependencies {
 ### Support base library gradle.
 
 ```
-compile 'tech.thdev.support:base-java:1.1.4'
+compile 'tech.thdev.support:base-java:1.0.0'
 ```
 
 ### Use dependencies
@@ -73,7 +73,7 @@ dependencies {
 ``    compile 'com.jakewharton:butterknife:8.5.1'
     apt 'com.jakewharton:butterknife-compiler:8.5.1'
 
-    compile 'tech.thdev.support:base-java:1.1.4'
+    compile 'tech.thdev.support:base-java:1.0.0'
 }
 ```
 
