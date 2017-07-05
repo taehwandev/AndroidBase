@@ -34,8 +34,10 @@ buildscript {
 
         Properties properties = new Properties()
         properties.load(project.rootProject.file('local.properties').newDataInputStream())
-        BINTRARY_USER = properties.getProperty('bintray.bintrayUser').isEmpty() ? System.getenv('BINTRAY_USER') : properties.getProperty('bintray.bintrayUser')
-        BINTRARY_KEY = properties.getProperty('bintray.bintrayApiKey').isEmpty() ? System.getenv('BINTRAY_API_KEY') : properties.getProperty('bintray.bintrayApiKey')
+        BINTRARY_USER = properties.getProperty('bintray.bintrayUser') != null ?
+                properties.getProperty('bintray.bintrayUser') : System.getenv('BINTRAY_USER')
+        BINTRARY_KEY = properties.getProperty('bintray.bintrayApiKey') != null ?
+                properties.getProperty('bintray.bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
 
     }
     dependencies {
