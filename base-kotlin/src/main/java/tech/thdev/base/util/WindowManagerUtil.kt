@@ -8,56 +8,29 @@ import android.view.WindowManager
  * Created by tae-hwan on 8/22/16.
  */
 
-fun WindowManager.addWindowView(view: View?,
-                                xPos: Int, yPos: Int,
-                                type: Int,
-                                gravity: Int)
-        = this.addWindowView(view,
-        xPos, yPos,
-        type, WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN or WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
-        gravity, 1f)
-
-fun WindowManager.addWindowView(view: View?,
-                                xPos: Int, yPos: Int,
-                                type: Int, flags: Int,
-                                gravity: Int,
-                                alpha: Float = 1f)
-        = this.addWindowView(view,
-        WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT,
-        xPos, yPos,
-        type, flags, gravity, alpha)
-
-fun WindowManager.addWindowView(view: View?,
-                                width: Int, height: Int,
-                                xPos: Int, yPos: Int,
-                                type: Int, flags: Int,
-                                gravity: Int,
-                                alpha: Float = 1f)
-        = this.addWindowView(view,
-        width, height,
-        xPos, yPos,
-        type, flags, PixelFormat.TRANSLUCENT, gravity, alpha)
-
-fun WindowManager.addWindowView(view: View?,
-                                width: Int, height: Int,
-                                xPos: Int, yPos: Int,
-                                type: Int, flags: Int,
-                                format: Int, gravity: Int,
-                                alpha: Float = 1f): WindowManager.LayoutParams? {
-    this.let {
-        val layoutParams = WindowManager.LayoutParams()
-        layoutParams.width = width
-        layoutParams.height = height
-        layoutParams.x = xPos
-        layoutParams.y = yPos
-        layoutParams.alpha = alpha
-        layoutParams.type = type
-        layoutParams.flags = flags
-        layoutParams.format = format
-        layoutParams.gravity = gravity
-
-        this.addView(view, layoutParams)
-
-        return layoutParams
+@JvmOverloads fun WindowManager.addWindowView(
+        view: View?,
+        width: Int = WindowManager.LayoutParams.WRAP_CONTENT,
+        height: Int = WindowManager.LayoutParams.WRAP_CONTENT,
+        xPos: Int,
+        yPos: Int,
+        type: Int,
+        flags: Int = WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN or WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+        format: Int = PixelFormat.TRANSLUCENT,
+        gravity: Int,
+        alpha: Float = 1f): WindowManager.LayoutParams? {
+    val layoutParams = WindowManager.LayoutParams().apply {
+        this.width = width
+        this.height = height
+        this.x = xPos
+        this.y = yPos
+        this.alpha = alpha
+        this.type = type
+        this.flags = flags
+        this.format = format
+        this.gravity = gravity
     }
+    this.addView(view, layoutParams)
+
+    return layoutParams
 }

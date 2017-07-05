@@ -4,8 +4,8 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'maven-publish'
 
 ext {
-    libraryVersionCode = 2
-    libraryVersion = '1.0.0'
+    libraryVersionCode = 3
+    libraryVersion = '1.0.1'
     libraryDescription = 'Android base written in java by thdev.tech'
     releaseNote = 'CHANGELOG-JAVA.md'
 }

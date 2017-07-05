@@ -7,13 +7,14 @@ import tech.thdev.base.presenter.BaseView
 /**
  * Created by Tae-hwan on 9/5/16.
  */
-abstract class BasePresenterActivity<in VIEW: BaseView, P : BasePresenter<VIEW>> : BaseActivity(), BaseView {
+abstract class BasePresenterActivity<in VIEW: BaseView, PRESENTER : BasePresenter<VIEW>> : BaseActivity(), BaseView {
 
-    protected lateinit var presenter: P
+    protected lateinit var presenter: PRESENTER
         private set
 
-    abstract fun onCreatePresenter(): P
+    abstract fun onCreatePresenter(): PRESENTER
 
+    @Suppress("UNCHECKED_CAST")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         presenter = onCreatePresenter()
@@ -22,9 +23,6 @@ abstract class BasePresenterActivity<in VIEW: BaseView, P : BasePresenter<VIEW>>
 
     override fun onDestroy() {
         super.onDestroy()
-
         presenter.detachView()
     }
-
-    override fun isNotFinish() = !isFinishing
 }

@@ -5,22 +5,15 @@ package tech.thdev.base.presenter
  */
 abstract class CommonPresenter<VIEW : BaseView> : BasePresenter<VIEW> {
 
-    protected lateinit var view: VIEW
+    protected var view: VIEW? = null
         private set
 
-    private var isDetach = true
 
     override fun attachView(view: VIEW) {
         this.view = view
-        isDetach = false
     }
 
     override fun detachView() {
-        isDetach = true
+        view = null
     }
-
-    /**
-     * is Detach?
-     */
-    protected fun isDetach() = !isDetach and view.isNotFinish()
 }

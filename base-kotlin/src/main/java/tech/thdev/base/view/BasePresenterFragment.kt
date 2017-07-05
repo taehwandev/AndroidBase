@@ -10,13 +10,14 @@ import tech.thdev.base.presenter.BaseView
 /**
  * Created by tae-hwan on 8/28/16.
  */
-abstract class BasePresenterFragment<in VIEW : BaseView, P : BasePresenter<VIEW>> : BaseFragment(), BaseView {
+abstract class BasePresenterFragment<in VIEW : BaseView, PRESENTER : BasePresenter<VIEW>> : BaseFragment(), BaseView {
 
-    protected lateinit var presenter: P
+    protected lateinit var presenter: PRESENTER
         private set
 
-    abstract fun onCreatePresenter(): P
+    abstract fun onCreatePresenter(): PRESENTER
 
+    @Suppress("UNCHECKED_CAST")
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         presenter = onCreatePresenter()
         presenter.attachView(this as VIEW)
@@ -25,9 +26,6 @@ abstract class BasePresenterFragment<in VIEW : BaseView, P : BasePresenter<VIEW>
 
     override fun onDestroy() {
         super.onDestroy()
-
         presenter.detachView()
     }
-
-    override fun isNotFinish() = !activity.isFinishing
 }

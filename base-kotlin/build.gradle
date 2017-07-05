@@ -6,8 +6,8 @@ apply plugin: 'maven-publish'
 
 
 ext {
-    libraryVersionCode = 2
-    libraryVersion = '1.0.0'
+    libraryVersionCode = 4
+    libraryVersion = '1.0.2'
     libraryDescription = 'Android base written in kotlin by thdev.tech'
     releaseNote = 'CHANGELOG-KOTLIN.md'
 }

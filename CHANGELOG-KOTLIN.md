@@ -1,5 +1,11 @@
 ## Change Log
 
+### Version 1.0.2 (2017-07-05)
+
+- Update null check
+- Update support gradle version. 2.3.3
+- Change kotlin version = '1.1.3-2'
+
 ### Version 1.0.0 (2017-05-08)
 
 - Removing the Module
